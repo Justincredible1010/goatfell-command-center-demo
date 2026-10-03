@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Goatfell manufacturing project management command center" />
+    <title>Goatfell Command Center</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23173f31%22/><path d=%22M10 47 25 20l8 15 9-20 12 32Z%22 fill=%22%23d9ef85%22/></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span></div>
+          <div><strong>GOATFELL</strong><small>COMMAND CENTER</small></div>
+        </div>
+
+        <nav class="nav" aria-label="Main navigation">
+          <button class="nav-item active" data-view="overview"><span class="icon">⌂</span><span data-i18n="nav.overview">Overview</span></button>
+          <button class="nav-item" data-view="orders"><span class="icon">▦</span><span data-i18n="nav.orders">Orders</span><em>6</em></button>
+          <button class="nav-item" data-view="specs"><span class="icon">≠</span><span data-i18n="nav.specs">Specs & Quotes</span><em class="alert">4</em></button>
+          <button class="nav-item" data-view="production"><span class="icon">⚙</span><span data-i18n="nav.production">Production</span></button>
+          <button class="nav-item" data-view="logistics"><span class="icon">↗</span><span data-i18n="nav.logistics">Logistics</span></button>
+          <button class="nav-item" data-view="compliance"><span class="icon">✓</span><span data-i18n="nav.compliance">CE & Compliance</span><em class="alert">5</em></button>
+          <button class="nav-item" data-view="repairs"><span class="icon">◇</span><span data-i18n="nav.repairs">Repairs & Warranty</span></button>
+        </nav>
+
+        <div class="sidebar-spacer"></div>
+        <button class="secure-note settings-access" id="settingsAccessButton"><span>⚙</span><span><b>Settings</b><small>Access management</small></span><span class="secure-arrow">›</span></button>
+        <button class="secure-note" id="privateWorkspaceButton" hidden><span>◉</span><span><b data-i18n="secure.title">Private workspace</b><small data-i18n="secure.body">Organisation-isolated access</small></span><span class="secure-arrow">›</span></button>
+        <button class="profile" id="profileButton">
+          <span class="avatar" id="profileAvatar">AG</span>
+          <span><b id="profileName">Adam · Goatfell</b><small id="profileRole" data-i18n="role.admin">Administrator</small></span>
+          <span>⌄</span>
+        </button>
+      </aside>
+
+      <main>
+        <header class="topbar">
+          <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+          <div class="crumb"><span data-i18n="workspace">Workspace</span><b>/</b><strong id="viewTitle">Overview</strong></div>
+          <div class="top-actions">
+            <label class="search"><span>⌕</span><input id="globalSearch" type="search" placeholder="Search orders, units, tasks…" data-i18n-placeholder="search" /></label>
+            <button class="language-toggle present-button" id="presentationButton">Present</button>
+            <select id="roleSwitcher" aria-label="Preview role">
+              <option value="goatfell">Goatfell UK</option>
+              <option value="sephiroth">Partner A</option>
+              <option value="earthstorm">Partner B</option>
+              <option value="freight">Freight Partner</option>
+            </select>
+            <button class="language-toggle" id="languageToggle">中文</button>
+            <button class="notification" id="notificationButton" aria-label="Notifications">♢<i>5</i></button>
+          </div>
+        </header>
+
+        <div class="content">
+          <section class="view active" id="overviewView"></section>
+          <section class="view" id="ordersView"></section>
+          <section class="view" id="specsView"></section>
+          <section class="view" id="productionView"></section>
+          <section class="view" id="logisticsView"></section>
+          <section class="view" id="complianceView"></section>
+          <section class="view" id="repairsView"></section>
+        </div>
+      </main>
+    </div>
+
+    <div class="presentation-banner" id="presentationBanner" hidden><span><b>Presentation mode</b><small id="presentationScope">Goatfell + selected partner</small></span><button class="btn secondary" id="exitPresentationButton">Exit presentation</button></div>
+
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <aside class="drawer" id="drawer" aria-live="polite"></aside>
+
+    <dialog id="appDialog">
+      <form method="dialog" id="dialogForm">
+        <div class="dialog-head"><div><span class="eyebrow" id="dialogEyebrow">NEW RECORD</span><h2 id="dialogTitle">Add record</h2></div><button type="button" class="icon-btn" data-dialog-close aria-label="Close">×</button></div>
+        <div id="dialogBody"></div>
+        <div class="dialog-actions"><button type="button" class="btn secondary" data-dialog-close data-i18n="cancel">Cancel</button><button type="submit" class="btn primary" id="dialogSubmit">Save record</button></div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast"><span>✓</span><div><b id="toastTitle">Saved</b><small id="toastMessage">Your change has been recorded.</small></div></div>
+    <script src="app.js"></script>
+  </body>
+</html>
